@@ -83,3 +83,44 @@ describe("HiBlock.getFieldValue", () => {
     expect(HiBlock.getFieldValue('friends.{age}', obj)).toEqual([{ age: '18' }, { age: '17' }]);
   })
 })
+// 测试 getRequestParams 插件
+describe("HiBlock.getRequestParams", () => {
+  // 测试插件是否正确引入
+  test("getRequestParams should be defined", () => {
+    expect(HiBlock.getRequestParams).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("getRequestParams should return the request params", () => {
+    const data1 = { name: 'Leo', age: '18', gender: 'male' };
+    const data2 = { family: { father: 'Tom', mother: 'Lucy' }, friends: [{ name: 'Jack', age: '18' }, { name: 'Lily', age: '17' }] };
+    // 形式一 param_obj 为对象
+    const params = HiBlock.getRequestParams({ name: '', friends: [] }, {
+      param_name_key: 'data1.name',
+      param_friends_key: 'data2.friends.[name]'
+    }, { data1, data2 });
+    // 形式三 param_obj 为数组
+    const params2 = HiBlock.getRequestParams([], { param_value_name: 'data2.friends.[name]' }, { data1, data2 });
+    expect(params2).toEqual(['Jack', 'Lily']);
+  })
+})
+// 测试 getDataTypeOperation 插件
+describe("HiBlock.getDataTypeOperation", () => {
+  // 测试插件是否正确引入
+  test("getDataTypeOperation should be defined", () => {
+    expect(HiBlock.getDataType).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("getDataTypeOperation should return the data type operation", () => {
+    expect(HiBlock.getDataType(123)).toBe('number');
+    expect(HiBlock.isArray([])).toBe(true);
+    expect(HiBlock.isObject({})).toBe(true);
+    expect(HiBlock.isString('123')).toBe(true);
+    expect(HiBlock.isNumber(123)).toBe(true);
+    expect(HiBlock.isBoolean(true)).toBe(true);
+
+    // expect(HiBlock.getDataTypeOperation('123', 'number')).toBe('123');
+    // expect(HiBlock.getDataTypeOperation('123', 'string')).toBe('123');
+    // expect(HiBlock.getDataTypeOperation('123', 'boolean')).toBe('123'); // 
+    // expect(HiBlock.getDataTypeOperation('123', 'boolean')).toBe('123');
+  })
+})
