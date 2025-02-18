@@ -20,7 +20,6 @@ export function getFieldValue(field_path: string, data_source: object, defaultVa
   let processingType = null; // 用于记录末级字段的处理类型
 
   field_path.split('.').forEach(key => {
-    console.log('key:', key);
     if (key.startsWith('`') && key.endsWith('`')) {
       keys.push(key.slice(1, -1)); // 去掉反引号
       processingType = 'concat'; // 拼接字符串
@@ -40,16 +39,13 @@ export function getFieldValue(field_path: string, data_source: object, defaultVa
   for (const key of keys) {
     if (result && typeof result === 'object' && key in result) {
       result = result[key]; // 逐层深入
-      console.log('result:', result);
     } else {
       break // 如果某一层不存在指定字段，返回 undefined
     }
   }
-  console.log('processingType:', processingType);
   // 如果末级字段需要特殊处理
   if (processingType && Array.isArray(result)) {
     const targetField = keys[keys.length - 1]; // 获取末级字段名
-    console.log('targetField:', targetField);
     switch (processingType) {
       case 'concat': {
         // 拼接数组中每个对象的指定字段值为字符串
@@ -77,7 +73,6 @@ export function getFieldValue(field_path: string, data_source: object, defaultVa
         result = undefined;
     }
   }
-  console.log('result:', result);
   return result;
 }
 
