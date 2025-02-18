@@ -1,6 +1,22 @@
 import { DataTypeOperation } from "./getDataTypeOperation";
 import { getFieldValue } from "./getFieldValue";
 
+interface ParamConfigOptions {
+  res_key_name?: string; // 响应数据名称
+  params_type?: 'json_str' | 'json' | 'formData'; // 请求参数类型
+  params_str?: string; // 请求参数
+  contentType?: string; // 请求头
+  param_not_null_key?: string; // 参数不为空时，添加到请求参数中
+  res_data_name?: string; // 响应列表数据名称
+  res_total_name?: string; // 响应列表数据总数名称
+  param_exclude_keys?: string; // 请求参数中需要排除的key
+  [key: string]: string | undefined;
+}
+export type RequestArgument<T> = [
+  url: string, // 请求地址
+  param: Array<T> | T, // 请求参数
+  param_config_options: ParamConfigOptions
+]
 /**
  * author: 杜朝辉
  * date: 2025-02-17
