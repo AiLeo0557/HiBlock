@@ -5,3 +5,4 @@ export * from "./utils/getStringBetween";
 export * from "./utils/getFieldValue";
 export * from "./utils/getRequestParams"
 export * from "./utils/getDataTypeOperation"
+export * from "./hook/useElementMounted"
