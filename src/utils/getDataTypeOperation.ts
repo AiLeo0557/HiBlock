@@ -127,4 +127,8 @@ export class DataTypeOperation {
   static isElement(data: any): data is HTMLElement {
     return DataTypeOperation.isObjectLike(data) && data.nodeType === 1;
   }
+  // 判断传入的参数不为空同时不为undefined
+  static isNotEmpty(data: any): boolean {
+    return data !== undefined && data !== null && data !== "";
+  }
 }
