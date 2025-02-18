@@ -119,3 +119,17 @@ describe("HiBlock.getDataTypeOperation", () => {
     expect(HiBlock.DataTypeOperation.isBoolean(true)).toBe(true);
   })
 })
+// 测试 useElementMounted 插件
+describe("HiBlock.useElementMounted", () => {
+  // 测试插件是否正确引入
+  test("useElementMounted should be defined", () => {
+    expect(HiBlock.useElementMounted).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("useElementMounted should return the element mounted", () => {
+    // const element = HiBlock.useElementMounted
+    // expect(element).toBe('div');
+    const elementIsMounted = HiBlock.useElementMounted('#app');
+    expect(elementIsMounted.value).toBe(false);
+  })
+})
