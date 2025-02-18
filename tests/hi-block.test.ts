@@ -107,20 +107,15 @@ describe("HiBlock.getRequestParams", () => {
 describe("HiBlock.getDataTypeOperation", () => {
   // 测试插件是否正确引入
   test("getDataTypeOperation should be defined", () => {
-    expect(HiBlock.getDataType).toBeDefined();
+    expect(HiBlock.DataTypeOperation.getDataType).toBeDefined();
   })
   // 测试插件是否正确使用
   test("getDataTypeOperation should return the data type operation", () => {
-    expect(HiBlock.getDataType(123)).toBe('number');
-    expect(HiBlock.isArray([])).toBe(true);
-    expect(HiBlock.isObject({})).toBe(true);
-    expect(HiBlock.isString('123')).toBe(true);
-    expect(HiBlock.isNumber(123)).toBe(true);
-    expect(HiBlock.isBoolean(true)).toBe(true);
-
-    // expect(HiBlock.getDataTypeOperation('123', 'number')).toBe('123');
-    // expect(HiBlock.getDataTypeOperation('123', 'string')).toBe('123');
-    // expect(HiBlock.getDataTypeOperation('123', 'boolean')).toBe('123'); // 
-    // expect(HiBlock.getDataTypeOperation('123', 'boolean')).toBe('123');
+    expect(HiBlock.DataTypeOperation.getDataType(123)).toBe('number');
+    expect(HiBlock.DataTypeOperation.isArray([])).toBe(true);
+    expect(HiBlock.DataTypeOperation.isObject({})).toBe(true);
+    expect(HiBlock.DataTypeOperation.isString('123')).toBe(true);
+    expect(HiBlock.DataTypeOperation.isNumber(123)).toBe(true);
+    expect(HiBlock.DataTypeOperation.isBoolean(true)).toBe(true);
   })
 })
