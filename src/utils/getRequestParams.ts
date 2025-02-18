@@ -1,4 +1,4 @@
-import { getDataType, isArray, isEmptyObject, isPlainObject } from "./getDataTypeOperation";
+import { DataTypeOperation } from "./getDataTypeOperation";
 import { getFieldValue } from "./getFieldValue";
 
 /**
@@ -17,8 +17,8 @@ export function getRequestParams(param_obj: Record<string, any>, param_options: 
    * param_obj 的格式为对象,返回的param 的格式也为对象;
    */
   if (
-    isPlainObject(param_obj) && // 过滤掉非对象
-    !isEmptyObject(param_obj) // 过滤掉空对象 {}
+    DataTypeOperation.isPlainObject(param_obj) && // 过滤掉非对象
+    !DataTypeOperation.isEmptyObject(param_obj) // 过滤掉空对象 {}
   ) {
     // 遍历param_obj的每一项
     Object.entries(param_obj).forEach(([key, value]) => {
@@ -77,7 +77,7 @@ export function getRequestParams(param_obj: Record<string, any>, param_options: 
    * 其中 createrUser、userName 是指数组中的每一项要追加的参数;
    */
   if (
-    isArray(param_obj) &&
+    DataTypeOperation.isArray(param_obj) &&
     param_options?.param_value_name // param_value_name 不能为空
   ) {
     const param_value_name = Reflect.get(param_options, 'param_value_name');
