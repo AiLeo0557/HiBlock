@@ -1,12 +1,12 @@
 // import type { InputProps } from 'element-plus'
 import { reactive } from 'vue';
-import type { RequestArgument } from '../utils/getRequestParams';
+import type { HiRequestArgument } from '../utils/getRequestParams';
 import { HiInputElOption, HiInputOption, MoreOptionConfig, useInputConfig } from './useInputConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段
   method: 'add' | 'sub' | 'mul' | 'div' | 'request' | 'filter' | 'switch'; // 计算方法
-  args?: RequestArgument<T>, // 请求参数
+  args?: HiRequestArgument<T>, // 请求参数
   from_key?: string; // 计算结果字段
   options?: {
     [key: string]: string; // 选项
@@ -16,6 +16,8 @@ export interface ComputedConfig<T> {
 export interface DefaultValueConfig {
   computed_config?: ComputedConfig<any>, // 计算配置
   from?: string, // 引用来源
+  default_select_all?: boolean, // Select 默认全选
+  use_select_option?: boolean, // 使用 Select 选项
 }
 export interface HiFormItemOption<T> {
   tag?: HiFormElTag,
