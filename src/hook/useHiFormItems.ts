@@ -1,7 +1,7 @@
 // import type { InputProps } from 'element-plus'
+import { reactive } from 'vue';
 import type { RequestArgument } from '../utils/getRequestParams';
-import { DataTypeOperation } from '../utils/getDataTypeOperation';
-import { HiInputOption, MoreOptionConfig, useInputConfig } from './useInputConfig';
+import { HiInputElOption, HiInputOption, MoreOptionConfig, useInputConfig } from './useInputConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段
@@ -18,6 +18,9 @@ export interface DefaultValueConfig {
   from?: string, // 引用来源
 }
 export interface HiFormItemOption<T> {
+  tag?: HiFormElTag,
+  label?: string, // 标签
+  name?: string, // 字段名
   span?: number, // 栅格数
   formrequired?: boolean, // 是否必填
   readonly?: boolean, // 是否只读
@@ -26,17 +29,12 @@ export interface HiFormItemOption<T> {
   elConfig: T, // 表单元素配置
   onVisible?: (data?: Record<string, any>) => boolean; // 是否显示
 }
-export type FormElementOption = []
 export type FormItemOption = []
-
-
 export interface VisibleConfig {
   key: string, // 关联字段
   value: string, // 关联值
   be_equal: string
 }
-
-
 export type HiFormElTag = 'input' | 'select' | 'checkbox' | 'radio' | 'switch' | 'date'
 export type HiFormItemConfigOption = string | boolean | number | VisibleConfig | MoreOptionConfig
 export type HiFormItemConfigOptions<T extends HiFormItemConfigOption[]> = [
@@ -56,14 +54,17 @@ export type HiFormItemsConfigTuple = [
   type: string, // 类型
   ...HiFormItemConfigOption[], // 其他配置
 ]
-export interface HiFormItemConfig {
-  tag: HiFormElTag,
-  label: string, // 标签
-  name: string, // 字段名
-}
+export type FormElementOption = HiInputElOption
 
+/**
+ * author: 杜朝辉
+ * date: 2025-02-19
+ * description: 表单项配置
+ * @param config 表单项配置JSON文件
+ * @returns [HiFormItemOption[], Record<string, any>] 表单项配置和表单数据
+ */
 export const useHiFormItems = (config: HiFormItemsConfig) => {
-  const formItems: HiFormItemConfig[] = []
+  const formItems: HiFormItemOption<FormElementOption>[] = []
   const formData = {}
   Object.entries(config).forEach(([tag, items]: [string, HiFormItemConfigOptions<HiFormItemConfigOption[]>[]]) => {
     items.forEach((item: HiFormItemConfigOptions<HiFormItemConfigOption[]>) => {
@@ -85,5 +86,5 @@ export const useHiFormItems = (config: HiFormItemsConfig) => {
       }
     })
   })
-  return [formItems, formData]
+  return [reactive(formData), reactive(formItems)]
 }
