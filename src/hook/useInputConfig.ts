@@ -1,5 +1,5 @@
 import { DataTypeOperation } from "../utils/getDataTypeOperation"
-import { RequestArgument } from "../utils/getRequestParams"
+import { HiRequestArgument } from "../utils/getRequestParams"
 import type { ComputedConfig, DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems"
 const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isNotEmpty, isBoolean, isEmptyObject, isString, isObject } = DataTypeOperation
 export interface ContentLayoutConfig {
@@ -21,7 +21,7 @@ export interface MoreOptionConfig {
     component: string, // 组件名
     configs_data: {
       layout_config: ContentLayoutConfig, // 布局配置
-      args: RequestArgument<any>,
+      args: HiRequestArgument<any>,
     }
   }
 }
