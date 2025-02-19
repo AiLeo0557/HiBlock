@@ -188,7 +188,7 @@ describe("HiBlock.useHiFormItems", () => {
         [1, '市场主体类型', 'type', null, null, null, null, null, null, 5],
       ]
     }
-    const [formItems, formData] = HiBlock.useHiFormItems(form_config as any)
+    const [formData, formItems] = HiBlock.useHiFormItems(form_config as any)
     expect(formData).toEqual({
       caption: '浙江大唐能源营销有限公司',
       type: undefined
