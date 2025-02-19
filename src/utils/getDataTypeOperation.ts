@@ -47,12 +47,17 @@ const dataTypeMap: { [key: string]: string } = dataTypes.reduce(
 export function isType(data: any, type: string): boolean {
   return objectToString.call(data) === dataTypeMap[type];
 }
-
+type notEmptyData = Exclude<string, "" | null | undefined>;
 export class DataTypeOperation {
   // 静态方法，获取数据类型
   static getDataType(data: any): string {
     // 使用Object.prototype.toString.call()方法获取数据类型
     return objectToString.call(data).slice(8, -1).toLowerCase();
+  }
+  // 判断传入的参数不等于 null、且对象不为空
+  static isNotEmptyObject(data: any): boolean {
+    // 判断传入的参数是否为对象
+    return DataTypeOperation.isObject(data) && Object.keys(data).length > 0;
   }
   // 判断传入的参数是否为空对象
   static isEmptyObject(data: any): boolean {
@@ -128,7 +133,7 @@ export class DataTypeOperation {
     return DataTypeOperation.isObjectLike(data) && data.nodeType === 1;
   }
   // 判断传入的参数不为空同时不为undefined
-  static isNotEmpty(data: any): boolean {
-    return data !== undefined && data !== null && data !== "";
+  static isNotEmpty(data: any): data is notEmptyData {
+    return !DataTypeOperation.isUndefined(data) && !DataTypeOperation.isNull(data) && data !== "";
   }
 }
