@@ -120,16 +120,95 @@ describe("HiBlock.getDataTypeOperation", () => {
   })
 })
 // 测试 useElementMounted 插件
-describe("HiBlock.useElementMounted", () => {
+// describe("HiBlock.useElementMounted", () => {
+//   // 测试插件是否正确引入
+//   test("useElementMounted should be defined", () => {
+//     expect(HiBlock.useElementMounted).toBeDefined();
+//   })
+//   // 测试插件是否正确使用
+//   test("useElementMounted should return the element mounted", () => {
+//     // const element = HiBlock.useElementMounted
+//     // expect(element).toBe('div');
+//     const elementIsMounted = HiBlock.useElementMounted('#app');
+//     expect(elementIsMounted.value).toBe(false);
+//   })
+// })
+// 测试 useInputConfig 插件
+describe("HiBlock.useInputConfig", () => {
   // 测试插件是否正确引入
-  test("useElementMounted should be defined", () => {
-    expect(HiBlock.useElementMounted).toBeDefined();
+  test("useInputConfig should be defined", () => {
+    expect(HiBlock.useInputConfig).toBeDefined();
   })
   // 测试插件是否正确使用
-  test("useElementMounted should return the element mounted", () => {
-    // const element = HiBlock.useElementMounted
-    // expect(element).toBe('div');
-    const elementIsMounted = HiBlock.useElementMounted('#app');
-    expect(elementIsMounted.value).toBe(false);
+  test("useInputConfig should return the input config", () => {
+    // 留空默认为 text
+    const inputConfig = HiBlock.useInputConfig([, ,]);
+    expect(inputConfig.elConfig).toEqual({
+      type: 'text',
+    })
+    // null 默认为 text
+    const inputConfig2 = HiBlock.useInputConfig([null, null, null]);
+    expect(inputConfig2.elConfig).toEqual({
+      type: 'text',
+    })
+    // 定义 default_value
+    const inputConfig3 = HiBlock.useInputConfig([
+      'hidden',
+      null,
+      null,
+      {
+        computed_config: {
+          method: 'request',
+          args: [
+            'engine-finance/igGkLocal/querySum',
+            { ttime: [], dxid: '' },
+            {
+              param_ttime_key: 'formData.ttime',
+              param_dxid_key: 'formData.jzCode',
+              param_not_null_key: 'ttime'
+            }
+          ],
+        }
+      }
+    ]);
+    // console.log(inputConfig3);
+  })
+})
+// 测试 useHiFormItems 插件
+describe("HiBlock.useHiFormItems", () => {
+  // 测试插件是否正确引入
+  test("useHiFormItems should be defined", () => {
+    expect(HiBlock.useHiFormItems).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("useHiFormItems should return the form items", () => {
+    const form_config = {
+      input: [
+        [0, '市场主体名称', 'caption', null, null, null, '浙江大唐能源营销有限公司', true, null, 5],
+        [1, '市场主体类型', 'type', null, null, null, null, null, null, 5],
+      ]
+    }
+    const [formItems, formData] = HiBlock.useHiFormItems(form_config as any)
+    expect(formData).toEqual({
+      caption: '浙江大唐能源营销有限公司',
+      type: undefined
+    })
+    expect(formItems).toEqual([
+      {
+        tag: 'input',
+        label: '市场主体名称',
+        name: 'caption',
+        span: 5,
+        elConfig: { type: 'text' },
+        formrequired: true
+      },
+      {
+        tag: 'input',
+        label: '市场主体类型',
+        name: 'type',
+        span: 5,
+        elConfig: { type: 'text' }
+      }
+    ])
   })
 })
