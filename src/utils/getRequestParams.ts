@@ -10,9 +10,10 @@ interface ParamConfigOptions {
   res_data_name?: string; // 响应列表数据名称
   res_total_name?: string; // 响应列表数据总数名称
   param_exclude_keys?: string; // 请求参数中需要排除的key
-  [key: string]: string | undefined;
+  onFormat?: (data: any) => any; // 格式化参数
+  // [key: string]: string | undefined;
 }
-export type RequestArgument<T> = [
+export type HiRequestArgument<T> = [
   url: string, // 请求地址
   param: Array<T> | T, // 请求参数
   param_config_options: ParamConfigOptions
