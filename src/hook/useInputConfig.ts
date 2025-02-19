@@ -48,10 +48,8 @@ export interface HiInputElOption {
  */
 export function useInputConfig(config_options: HiInputOption, setDefaultValue?: any): HiFormItemOption<HiInputElOption> {
   const defaultConfig: HiFormItemOption<HiInputElOption> = {
-    span: 24,
-    // formrequired: false,
-    // readonly: false,
-    elConfig: {}
+    span: 24, // 栅格数
+    elConfig: {} // el组件配置
   }
   const [
     type = 'text',
