@@ -6,3 +6,5 @@ export * from "./utils/getFieldValue";
 export * from "./utils/getRequestParams"
 export * from "./utils/getDataTypeOperation"
 export * from "./hook/useElementMounted"
+export * from "./hook/useHiFormItems"
+export * from "./hook/useInputConfig"
