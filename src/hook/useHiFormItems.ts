@@ -2,6 +2,7 @@
 import { reactive } from 'vue';
 import type { HiRequestArgument } from '../utils/getRequestParams';
 import { HiInputElOption, HiInputOption, MoreOptionConfig, useInputConfig } from './useInputConfig';
+import { HiSelectElOption, HiSelectOption, useSelectConfig } from './useSelectConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段
@@ -79,11 +80,16 @@ export const useHiFormItems = (config: HiFormItemsConfig) => {
         label,
         name
       })
+      // 设置默认值
+      const setDefaultValue = (value: any) => {
+        Reflect.set(formData, name, value)
+      }
       switch (tag) {
         case 'input':
-          Object.assign(formItems[index], useInputConfig(rest as unknown as HiInputOption, (value: any) => {
-            Reflect.set(formData, name, value)
-          }))
+          Object.assign(formItems[index], useInputConfig(rest as unknown as HiInputOption, setDefaultValue))
+          break
+        case 'select':
+          Object.assign(formItems[index], useSelectConfig(rest as unknown as HiSelectOption, setDefaultValue))
           break
       }
     })
