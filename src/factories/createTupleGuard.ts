@@ -9,3 +9,9 @@ export function createTupleGuard<T extends unknown[]>(...types: T): (arr: any[])
     return arr.every((value, index) => typeof value === typeof types[index]);
   };
 }
+export function createTypeGuard<T extends object>(keys: (keyof T)[]): (obj: any) => obj is T {
+  return (obj: any): obj is T => {
+    if (typeof obj !== "object" || obj === null) return false;
+    return keys.every((key) => key in obj);
+  };
+}
