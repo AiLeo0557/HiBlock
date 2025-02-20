@@ -145,26 +145,26 @@ describe("HiBlock.getDataTypeOperation", () => {
 //     expect(elementIsMounted.value).toBe(false);
 //   })
 // })
-// 测试 useInputConfig 插件
-describe("HiBlock.useInputConfig", () => {
+// 测试 defineHiInputConfig 插件
+describe("HiBlock.defineHiInputConfig", () => {
   // 测试插件是否正确引入
-  test("useInputConfig should be defined", () => {
-    expect(HiBlock.useInputConfig).toBeDefined();
+  test("defineHiInputConfig should be defined", () => {
+    expect(HiBlock.defineHiInputConfig).toBeDefined();
   })
   // 测试插件是否正确使用
-  test("useInputConfig should return the input config", () => {
+  test("defineHiInputConfig should return the input config", () => {
     // 留空默认为 text
-    const inputConfig = HiBlock.useInputConfig([, ,]);
+    const inputConfig = HiBlock.defineHiInputConfig([, ,]);
     expect(inputConfig.elConfig).toEqual({
       type: 'text',
     })
     // null 默认为 text
-    const inputConfig2 = HiBlock.useInputConfig([null, null, null]);
+    const inputConfig2 = HiBlock.defineHiInputConfig([null, null, null]);
     expect(inputConfig2.elConfig).toEqual({
       type: 'text',
     })
     // 定义 default_value
-    const inputConfig3 = HiBlock.useInputConfig([
+    const inputConfig3 = HiBlock.defineHiInputConfig([
       'hidden',
       null,
       null,
@@ -185,15 +185,15 @@ describe("HiBlock.useInputConfig", () => {
     ]);
   })
 })
-// 测试 useSelectConfig 插件
-describe("HiBlock.useSelectConfig", () => {
+// 测试 defineHiSelectConfig 插件
+describe("HiBlock.defineHiSelectConfig", () => {
   // 测试插件是否正确引入
-  test("useSelectConfig should be defined", () => {
-    expect(HiBlock.useSelectConfig).toBeDefined();
+  test("defineHiSelectConfig should be defined", () => {
+    expect(HiBlock.defineHiSelectConfig).toBeDefined();
   })
   // 测试插件是否正确使用
-  test("useSelectConfig should return the select config", () => {
-    const selectConfig = HiBlock.useSelectConfig(['ENTERPRISE_TYPE']);
+  test("defineHiSelectConfig should return the select config", () => {
+    const selectConfig = HiBlock.defineHiSelectConfig(['ENTERPRISE_TYPE']);
     expect(selectConfig).toEqual({
       span: 24,
       elConfig: {
@@ -209,14 +209,34 @@ describe("HiBlock.useSelectConfig", () => {
     })
   })
 })
-// 测试 useHiFormItems 插件
-describe("HiBlock.useHiFormItems", () => {
+// 测试 defineHiDateConfig 插件
+describe("HiBlock.defineHiDateConfig", () => {
   // 测试插件是否正确引入
-  test("useHiFormItems should be defined", () => {
-    expect(HiBlock.useHiFormItems).toBeDefined();
+  test("defineHiDateConfig should be defined", () => {
+    expect(HiBlock.defineHiDateConfig).toBeDefined();
   })
   // 测试插件是否正确使用
-  test("useHiFormItems should return the form items", () => {
+  test("defineHiDateConfig should return the date config", () => {
+    const dateConfig = HiBlock.defineHiDateConfig(['date', ['YYYY-MM-DD', 'YYYYMMDD'], null, { offset_amount: 1, offset_unit: 'month' }, null, 5, true]);
+    expect(dateConfig).toEqual({
+      span: 5,
+      elConfig: {
+        type: 'date',
+        format: 'YYYY-MM-DD',
+        valueFormat: 'YYYYMMDD',
+      },
+      formrequired: true
+    })
+  })
+})
+// 测试 defineHiFormItems 插件
+describe("HiBlock.defineHiFormItems", () => {
+  // 测试插件是否正确引入
+  test("defineHiFormItems should be defined", () => {
+    expect(HiBlock.defineHiFormItems).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("defineHiFormItems should return the form items", () => {
     const form_config = {
       input: [
         [0, '市场主体名称', 'caption', null, null, null, '浙江大唐能源营销有限公司', true, null, 5],
@@ -226,7 +246,7 @@ describe("HiBlock.useHiFormItems", () => {
         [2, '企业性质', 'enterpriseType', 'ENTERPRISE_TYPE', null, null, true, null, 10, null, 5, true],
       ]
     }
-    const [formData, formItems] = HiBlock.useHiFormItems(form_config as any)
+    const [formData, formItems] = HiBlock.defineHiFormItems(form_config as any)
     expect(formData).toEqual({
       caption: '浙江大唐能源营销有限公司',
       type: undefined,
