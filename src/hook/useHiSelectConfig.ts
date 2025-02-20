@@ -3,7 +3,7 @@ import { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiForm
 import type { FixedLengthArray } from '../types';
 import { defineEnumOptions } from "../definitions/defineEnumOptions";
 import { DataTypeOperation } from "../utils/getDataTypeOperation";
-const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isArray, isNotEmpty, isBoolean, isEmptyObject, isString, isObject } = DataTypeOperation;
+const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isArray, isBoolean } = DataTypeOperation;
 
 export interface HiSelectOptionItem {
   label: string,
@@ -11,7 +11,7 @@ export interface HiSelectOptionItem {
 }
 export type EnumOptionsAlias = FixedLengthArray<string, 2>;
 export type HiSelectOption = [
-  type?: string | null, // 枚举值类型
+  enum_type?: string | null, // 枚举值类型
   options_config?:
   HiRequestArgument<any> |
   HiSelectOptionItem[] |
@@ -41,15 +41,15 @@ export interface HiSelectElOption {
 /**
  * author: 杜朝辉
  * date: 2025-02-19
- * description: Select组件配置
+ * description: Select 组件配置
  */
-export function useSelectConfig(config_options: HiSelectOption, setDefaultValue?: any): HiFormItemOption<HiSelectElOption> {
+export function useHiSelectConfig(config_options: HiSelectOption, setDefaultValue?: any): HiFormItemOption<HiSelectElOption> {
   const defaultConfig: HiFormItemOption<HiSelectElOption> = {
     span: 24, // 栅格数
     elConfig: {} // el组件配置
   }
   const [
-    type,
+    enum_type,
     options_config,
     alias,
     multiple,
@@ -60,9 +60,9 @@ export function useSelectConfig(config_options: HiSelectOption, setDefaultValue?
     required
   ] = config_options
   defaultConfig.elConfig = {}
-  // 设置 type
-  if (type) {
-    defaultConfig.elConfig.options_config = defineEnumOptions(type)
+  // 设置 enum_type
+  if (enum_type) {
+    defaultConfig.elConfig.options_config = defineEnumOptions(enum_type)
   }
   // 设置 options_config
   if (options_config) {
