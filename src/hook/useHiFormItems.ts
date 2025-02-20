@@ -33,7 +33,6 @@ export interface HiFormItemOption<T> {
   elConfig: T, // 表单元素配置
   onVisible?: (data?: Record<string, any>) => boolean; // 是否显示
 }
-export type FormItemOption = []
 export interface VisibleConfig {
   key: string, // 关联字段
   value: string, // 关联值
