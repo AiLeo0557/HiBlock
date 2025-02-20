@@ -253,7 +253,6 @@ describe("HiBlock.useHiFormItems", () => {
         label: '企业性质',
         name: 'enterpriseType',
         span: 5,
-        formrequired: true,
         elConfig: {
           multiple: true,
           options_config: {
@@ -266,7 +265,8 @@ describe("HiBlock.useHiFormItems", () => {
               }
             ]
           }
-        }
+        },
+        formrequired: true
       }
     ])
   })
