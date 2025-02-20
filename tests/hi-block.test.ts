@@ -1,5 +1,5 @@
 // 引入插件
-import * as HiBlock from "../dist";
+import * as HiBlock from "../dist/index";
 
 // 测试 getFormData 插件
 describe("HiBlock.getFormData", () => {
