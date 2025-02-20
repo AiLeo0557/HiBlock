@@ -1,7 +1,8 @@
 import { DataTypeOperation } from "../utils/getDataTypeOperation"
 import { HiRequestArgument } from "../utils/getRequestParams"
-import type { ComputedConfig, DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems"
-const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isNotEmpty, isBoolean, isEmptyObject, isString, isObject } = DataTypeOperation
+import type { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems"
+
+const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isNotEmpty, isBoolean, isObject } = DataTypeOperation
 export interface ContentLayoutConfig {
   sider_visiable?: boolean, // 侧边栏是否显示
   table_visiable?: boolean, // 表格是否显示
@@ -44,9 +45,9 @@ export interface HiInputElOption {
 /**
  * author: 杜朝辉
  * date: 2025-02-19
- * description: input组件配置
+ * description: input 组件配置
  */
-export function useInputConfig(config_options: HiInputOption, setDefaultValue?: any): HiFormItemOption<HiInputElOption> {
+export function useHiInputConfig(config_options: HiInputOption, setDefaultValue?: any): HiFormItemOption<HiInputElOption> {
   const defaultConfig: HiFormItemOption<HiInputElOption> = {
     span: 24, // 栅格数
     elConfig: {} // el组件配置
