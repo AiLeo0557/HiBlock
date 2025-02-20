@@ -15,9 +15,7 @@ export function defineEnumOptions(codeType: string, alias_str?: string): HiSelec
         codeType
       },
       {
-        onFormat(res: any) {
-          return res.resultValue[0].compare_value
-        }
+        res_key_name: 'res.resultValue.0.value'
       }
     ]
   }

@@ -1,9 +1,9 @@
 import { HiRequestArgument, isHiRequestArgument } from "../utils/getRequestParams";
 import { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems";
-const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isNotEmpty, isBoolean, isEmptyObject, isString, isObject } = DataTypeOperation
 import type { FixedLengthArray } from '../types';
 import { defineEnumOptions } from "../definitions/defineEnumOptions";
-import { isArray } from "element-plus/es/utils";
+import { DataTypeOperation } from "../utils/getDataTypeOperation";
+const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isArray, isNotEmpty, isBoolean, isEmptyObject, isString, isObject } = DataTypeOperation;
 
 export interface HiSelectOptionItem {
   label: string,
@@ -37,7 +37,6 @@ export interface HiSelectElOption {
   multiple?: boolean,
   disabled?: boolean,
   options_config?: HiSelectOptionsConfig<any>,
-
 }
 /**
  * author: 杜朝辉

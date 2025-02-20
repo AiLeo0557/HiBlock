@@ -12,7 +12,7 @@ interface ParamConfigOptions {
   res_total_name?: string; // 响应列表数据总数名称
   param_exclude_keys?: string; // 请求参数中需要排除的key
   onFormat?: (data: any) => any; // 格式化参数
-  // [key: string]: string | undefined;
+  [key: string]: any;
 }
 export type HiRequestArgument<T> = [
   url: string, // 请求地址

@@ -82,6 +82,18 @@ describe("HiBlock.getFieldValue", () => {
     // expect(HiBlock.getFieldValue('friends[0].name', obj)).toBe('Jack');
     expect(HiBlock.getFieldValue('friends.{age}', obj)).toEqual([{ age: '18' }, { age: '17' }]);
   })
+  // 测试数组索引
+  test("getFieldValue should return the value of a field with array index", () => {
+    const obj = {
+      name: 'Leo', age: '18', gender: 'male',
+      family: { father: 'Tom', mother: 'Lucy' },
+      friends: [
+        { name: 'Jack', age: '18' },
+        { name: 'Lily', age: '17' }
+      ]
+    };
+    expect(HiBlock.getFieldValue('friends.0.name', obj)).toBe('Jack');
+  })
 })
 // 测试 getRequestParams 插件
 describe("HiBlock.getRequestParams", () => {
@@ -172,6 +184,19 @@ describe("HiBlock.useInputConfig", () => {
       }
     ]);
     // console.log(inputConfig3);
+  })
+})
+// 测试 useSelectConfig 插件
+describe("HiBlock.useSelectConfig", () => {
+  // 测试插件是否正确引入
+  test("useSelectConfig should be defined", () => {
+    expect(HiBlock.useSelectConfig).toBeDefined();
+  })
+  // 测试插件是否正确使用
+  test("useSelectConfig should return the select config", () => {
+    const selectConfig = HiBlock.useSelectConfig(['ENTERPRISE_TYPE']);
+    console.log(selectConfig.elConfig.options_config?.args?.[2]);
+    expect(selectConfig.elConfig.options_config?.args?.[2]).toEqual({ onFormat(res: any) { return res.resultValue[0].value } })
   })
 })
 // 测试 useHiFormItems 插件
