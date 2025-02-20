@@ -1,9 +1,9 @@
 // import type { InputProps } from 'element-plus'
 import { reactive } from '@vue/reactivity';
 import type { HiRequestArgument } from '../utils/getRequestParams';
-import { HiInputElOption, HiInputOption, MoreOptionConfig, useHiInputConfig } from './useHiInputConfig';
-import { HiSelectElOption, HiSelectOption, useHiSelectConfig } from './useHiSelectConfig';
-import { HiDateElOption, HiDateOption, useHiDateConfig } from './useHiDateConfig';
+import { HiInputElOption, HiInputOption, MoreOptionConfig, useHiInputConfig } from './defineHiInputConfig';
+import { HiSelectElOption, HiSelectOption, useHiSelectConfig } from './defineHiSelectConfig';
+import { HiDateElOption, HiDateOption, useHiDateConfig } from './defineHiDateConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段

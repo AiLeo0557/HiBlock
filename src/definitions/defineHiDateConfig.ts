@@ -1,4 +1,4 @@
-import { HiFormItemOption, VisibleConfig } from "./useHiFormItems"
+import { HiFormItemOption, VisibleConfig } from "../hook/useHiFormItems"
 import { DataTypeOperation } from "../utils/getDataTypeOperation";
 import { createTypeGuard } from "../factories/createTupleGuard";
 import dayjs, { ManipulateType } from "dayjs";

@@ -11,9 +11,9 @@ export * from "./utils/getStringBetween";
 // 钩子函数
 export * from "./hook/useElementMounted"
 export * from "./hook/useHiFormItems"
-export * from "./hook/useHiInputConfig"
-export * from "./hook/useHiSelectConfig"
-export * from "./hook/useHiDateConfig"
+export * from "./definitions/defineHiInputConfig"
+export * from "./definitions/defineHiSelectConfig"
+export * from "./definitions/defineHiDateConfig"
 
 // definition
 export * from "./definitions/defineEnumOptions"

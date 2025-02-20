@@ -1,7 +1,7 @@
 import { HiRequestArgument, isHiRequestArgument } from "../utils/getRequestParams";
-import { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems";
+import { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "../hook/useHiFormItems";
 import type { FixedLengthArray } from '../types';
-import { defineEnumOptions } from "../definitions/defineEnumOptions";
+import { defineEnumOptions } from "./defineEnumOptions";
 import { DataTypeOperation } from "../utils/getDataTypeOperation";
 const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isArray, isBoolean } = DataTypeOperation;
 

@@ -1,6 +1,6 @@
 import { DataTypeOperation } from "../utils/getDataTypeOperation"
 import { HiRequestArgument } from "../utils/getRequestParams"
-import type { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./useHiFormItems"
+import type { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./defineHiFormItems"
 
 const { isNull, isPrimitive, isUndefined, isNotEmptyObject, isNotEmpty, isBoolean, isObject } = DataTypeOperation
 export interface ContentLayoutConfig {

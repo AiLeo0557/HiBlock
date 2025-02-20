@@ -1,4 +1,4 @@
-import type { EnumOptionsAlias, HiSelectOptionsConfig } from "../hook/useHiSelectConfig";
+import type { EnumOptionsAlias, HiSelectOptionsConfig } from "./defineHiSelectConfig";
 
 /**
  * author: 杜朝辉
