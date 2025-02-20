@@ -1,3 +1,4 @@
+import { createTupleGuard } from "../factories/createTupleGuard";
 import { DataTypeOperation } from "./getDataTypeOperation";
 import { getFieldValue } from "./getFieldValue";
 
@@ -18,6 +19,7 @@ export type HiRequestArgument<T> = [
   param: Array<T> | T, // 请求参数
   param_config_options: ParamConfigOptions
 ]
+export const isHiRequestArgument = createTupleGuard<HiRequestArgument<any>>('', {}, {});
 /**
  * author: 杜朝辉
  * date: 2025-02-17
