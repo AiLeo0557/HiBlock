@@ -1,3 +1,6 @@
+import { DataTypeOperation } from "./getDataTypeOperation";
+const { isObject, isArray, isNumber } = DataTypeOperation;
+
 /**
  * author: 杜朝辉
  * date: 2020-12-03
@@ -37,8 +40,12 @@ export function getFieldValue(field_path: string, data_source: object, defaultVa
   let result: any = data_source;
 
   for (const key of keys) {
-    if (result && typeof result === 'object' && key in result) {
+    console.log('key:', key)
+    if (isObject(result) && key in result) {
       result = result[key]; // 逐层深入
+    } else if (isArray(result) && isNumber(+key) && +key < result.length) {
+      result = result[+key]
+      console.log('result:', result)
     } else {
       break // 如果某一层不存在指定字段，返回 undefined
     }
