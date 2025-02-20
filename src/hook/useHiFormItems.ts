@@ -1,8 +1,9 @@
 // import type { InputProps } from 'element-plus'
-import { reactive } from 'vue';
+import { reactive } from '@vue/reactivity';
 import type { HiRequestArgument } from '../utils/getRequestParams';
-import { HiInputElOption, HiInputOption, MoreOptionConfig, useInputConfig } from './useInputConfig';
-import { HiSelectElOption, HiSelectOption, useSelectConfig } from './useSelectConfig';
+import { HiInputElOption, HiInputOption, MoreOptionConfig, useHiInputConfig } from './useHiInputConfig';
+import { HiSelectElOption, HiSelectOption, useHiSelectConfig } from './useHiSelectConfig';
+import { HiDateElOption, HiDateOption, useHiDateConfig } from './useHiDateConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段
@@ -57,7 +58,7 @@ export type HiFormItemsConfigTuple = [
   type: string, // 类型
   ...HiFormItemConfigOption[], // 其他配置
 ]
-export type FormElementOption = HiInputElOption
+export type FormElementOption = HiInputElOption | HiSelectElOption | HiDateElOption
 
 /**
  * author: 杜朝辉
@@ -86,10 +87,13 @@ export const useHiFormItems = (config: HiFormItemsConfig) => {
       }
       switch (tag) {
         case 'input':
-          Object.assign(formItems[index], useInputConfig(rest as unknown as HiInputOption, setDefaultValue))
+          Object.assign(formItems[index], useHiInputConfig(rest as unknown as HiInputOption, setDefaultValue))
           break
         case 'select':
-          Object.assign(formItems[index], useSelectConfig(rest as unknown as HiSelectOption, setDefaultValue))
+          Object.assign(formItems[index], useHiSelectConfig(rest as unknown as HiSelectOption, setDefaultValue))
+          break
+        case 'date':
+          Object.assign(formItems[index], useHiDateConfig(rest as unknown as HiDateOption, setDefaultValue))
           break
       }
     })
