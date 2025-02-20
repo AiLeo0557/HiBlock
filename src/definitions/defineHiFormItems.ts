@@ -1,9 +1,9 @@
 // import type { InputProps } from 'element-plus'
 import { reactive } from '@vue/reactivity';
 import type { HiRequestArgument } from '../utils/getRequestParams';
-import { HiInputElOption, HiInputOption, MoreOptionConfig, useHiInputConfig } from './defineHiInputConfig';
-import { HiSelectElOption, HiSelectOption, useHiSelectConfig } from './defineHiSelectConfig';
-import { HiDateElOption, HiDateOption, useHiDateConfig } from './defineHiDateConfig';
+import { HiInputElOption, HiInputOption, MoreOptionConfig, defineHiInputConfig } from './defineHiInputConfig';
+import { HiSelectElOption, HiSelectOption, defineHiSelectConfig } from './defineHiSelectConfig';
+import { HiDateElOption, HiDateOption, defineHiDateConfig } from './defineHiDateConfig';
 
 export interface ComputedConfig<T> {
   keys?: string[]; // 关联字段
@@ -66,7 +66,7 @@ export type FormElementOption = HiInputElOption | HiSelectElOption | HiDateElOpt
  * @param config 表单项配置JSON文件
  * @returns [HiFormItemOption[], Record<string, any>] 表单项配置和表单数据
  */
-export const useHiFormItems = (config: HiFormItemsConfig) => {
+export const defineHiFormItems = (config: HiFormItemsConfig) => {
   const formItems: HiFormItemOption<FormElementOption>[] = []
   const formData = {}
   Object.entries(config).forEach(([tag, items]: [string, HiFormItemConfigOptions<HiFormItemConfigOption[]>[]]) => {
@@ -86,13 +86,13 @@ export const useHiFormItems = (config: HiFormItemsConfig) => {
       }
       switch (tag) {
         case 'input':
-          Object.assign(formItems[index], useHiInputConfig(rest as unknown as HiInputOption, setDefaultValue))
+          Object.assign(formItems[index], defineHiInputConfig(rest as unknown as HiInputOption, setDefaultValue))
           break
         case 'select':
-          Object.assign(formItems[index], useHiSelectConfig(rest as unknown as HiSelectOption, setDefaultValue))
+          Object.assign(formItems[index], defineHiSelectConfig(rest as unknown as HiSelectOption, setDefaultValue))
           break
         case 'date':
-          Object.assign(formItems[index], useHiDateConfig(rest as unknown as HiDateOption, setDefaultValue))
+          Object.assign(formItems[index], defineHiDateConfig(rest as unknown as HiDateOption, setDefaultValue))
           break
       }
     })

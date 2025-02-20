@@ -47,7 +47,7 @@ export interface HiInputElOption {
  * date: 2025-02-19
  * description: input 组件配置
  */
-export function useHiInputConfig(config_options: HiInputOption, setDefaultValue?: any): HiFormItemOption<HiInputElOption> {
+export function defineHiInputConfig(config_options: HiInputOption, setDefaultValue?: any): HiFormItemOption<HiInputElOption> {
   const defaultConfig: HiFormItemOption<HiInputElOption> = {
     span: 24, // 栅格数
     elConfig: {} // el组件配置

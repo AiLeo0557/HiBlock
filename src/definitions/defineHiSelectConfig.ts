@@ -1,5 +1,5 @@
 import { HiRequestArgument, isHiRequestArgument } from "../utils/getRequestParams";
-import { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "../hook/useHiFormItems";
+import type { DefaultValueConfig, HiFormItemOption, VisibleConfig } from "./defineHiFormItems";
 import type { FixedLengthArray } from '../types';
 import { defineEnumOptions } from "./defineEnumOptions";
 import { DataTypeOperation } from "../utils/getDataTypeOperation";
@@ -43,7 +43,7 @@ export interface HiSelectElOption {
  * date: 2025-02-19
  * description: Select 组件配置
  */
-export function useHiSelectConfig(config_options: HiSelectOption, setDefaultValue?: any): HiFormItemOption<HiSelectElOption> {
+export function defineHiSelectConfig(config_options: HiSelectOption, setDefaultValue?: any): HiFormItemOption<HiSelectElOption> {
   const defaultConfig: HiFormItemOption<HiSelectElOption> = {
     span: 24, // 栅格数
     elConfig: {} // el组件配置

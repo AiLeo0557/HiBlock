@@ -10,13 +10,13 @@ export * from "./utils/getStringBetween";
 
 // 钩子函数
 export * from "./hook/useElementMounted"
-export * from "./hook/useHiFormItems"
-export * from "./definitions/defineHiInputConfig"
-export * from "./definitions/defineHiSelectConfig"
-export * from "./definitions/defineHiDateConfig"
 
 // definition
 export * from "./definitions/defineEnumOptions"
+export * from "./definitions/defineHiFormItems"
+export * from "./definitions/defineHiInputConfig"
+export * from "./definitions/defineHiSelectConfig"
+export * from "./definitions/defineHiDateConfig"
 
 // factories
 export * from "./factories/createTupleGuard"

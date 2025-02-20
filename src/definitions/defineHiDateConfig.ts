@@ -1,8 +1,8 @@
-import { HiFormItemOption, VisibleConfig } from "../hook/useHiFormItems"
+import { HiFormItemOption, VisibleConfig } from "./defineHiFormItems"
 import { DataTypeOperation } from "../utils/getDataTypeOperation";
 import { createTypeGuard } from "../factories/createTupleGuard";
 import dayjs, { ManipulateType } from "dayjs";
-const { isNull, isString, isObject, isUndefined, isArray, isBoolean } = DataTypeOperation;
+const { isNull, isNumber, isString, isObject, isUndefined, isArray, isBoolean } = DataTypeOperation;
 
 type disabled_date_st = [start?: string, end?: string]
 type DateType = 'year' | 'month' | 'date' | 'datetime' | 'time' | 'week' | 'daterange' | 'monthrange' | 'datetimerange' | 'timerange' | 'yearrange'
@@ -10,10 +10,11 @@ interface DefaultDateValueConfig {
   offset_amount: number | [number, number],
   offset_unit: ManipulateType,
 }
+export type DateFormatConfig = [format: string | null, value_format: string | null]
 export const isDefaultDateValueConfig = createTypeGuard<DefaultDateValueConfig>(['offset_amount', 'offset_unit'])
 export type HiDateOption = [
   type: DateType, // 类型
-  format_config?: [format: string | null, value_format: string | null], // 格式
+  format_config?: DateFormatConfig, // 格式
   disabled_config?: boolean | disabled_date_st | null, // 禁用配置
   default_value_config?: DefaultDateValueConfig | string | null, // 默认值配置
   visible_config?: VisibleConfig | null, // 是否显示
@@ -50,7 +51,7 @@ export function isDateType(value: any): value is DateType {
  * date: 2025-02-20
  * description: Date 组件配置
  */
-export function useHiDateConfig(config_options: HiDateOption, setDefaultValue?: any): HiFormItemOption<HiDateElOption> {
+export function defineHiDateConfig(config_options: HiDateOption, setDefaultValue?: any): HiFormItemOption<HiDateElOption> {
   const defaultConfig: HiFormItemOption<HiDateElOption> = {
     span: 24, // 栅格数
     elConfig: {
@@ -109,8 +110,8 @@ export function useHiDateConfig(config_options: HiDateOption, setDefaultValue?: 
     }
     if (isDefaultDateValueConfig(default_value_config)) {
       const { offset_amount, offset_unit } = default_value_config
-      const [format, value_format] = format_config
-      if (type.includes('range')) {
+      const [format, value_format] = format_config as DateFormatConfig
+      if (type.includes('range') && !isNull(value_format)) {
         if (isArray(offset_amount)) {
           res = [
             dayjs().subtract(offset_amount[0], offset_unit).format(value_format),
@@ -123,7 +124,7 @@ export function useHiDateConfig(config_options: HiDateOption, setDefaultValue?: 
           ]
         }
       }
-      if (isNumber(offset_amount)) {
+      if (isNumber(offset_amount) && !isNull(value_format)) {
         res = dayjs().subtract(offset_amount, offset_unit).format(value_format)
       }
     }
