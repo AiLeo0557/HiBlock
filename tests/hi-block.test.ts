@@ -183,7 +183,6 @@ describe("HiBlock.useInputConfig", () => {
         }
       }
     ]);
-    // console.log(inputConfig3);
   })
 })
 // 测试 useSelectConfig 插件
@@ -195,8 +194,19 @@ describe("HiBlock.useSelectConfig", () => {
   // 测试插件是否正确使用
   test("useSelectConfig should return the select config", () => {
     const selectConfig = HiBlock.useSelectConfig(['ENTERPRISE_TYPE']);
-    console.log(selectConfig.elConfig.options_config?.args?.[2]);
-    expect(selectConfig.elConfig.options_config?.args?.[2]).toEqual({ onFormat(res: any) { return res.resultValue[0].value } })
+    expect(selectConfig).toEqual({
+      span: 24,
+      elConfig: {
+        options_config: {
+          alias: ['enumValue', 'enumCode'],
+          args: [
+            'engine-bill/combox/queryFsApdEnums',
+            { codeType: 'ENTERPRISE_TYPE' },
+            { res_key_name: 'res.resultValue.0.value' }
+          ]
+        }
+      }
+    })
   })
 })
 // 测试 useHiFormItems 插件
@@ -211,12 +221,16 @@ describe("HiBlock.useHiFormItems", () => {
       input: [
         [0, '市场主体名称', 'caption', null, null, null, '浙江大唐能源营销有限公司', true, null, 5],
         [1, '市场主体类型', 'type', null, null, null, null, null, null, 5],
+      ],
+      select: [
+        [2, '企业性质', 'enterpriseType', 'ENTERPRISE_TYPE', null, null, true, null, 10, null, 5, true],
       ]
     }
     const [formData, formItems] = HiBlock.useHiFormItems(form_config as any)
     expect(formData).toEqual({
       caption: '浙江大唐能源营销有限公司',
-      type: undefined
+      type: undefined,
+      enterpriseType: 10
     })
     expect(formItems).toEqual([
       {
@@ -233,6 +247,26 @@ describe("HiBlock.useHiFormItems", () => {
         name: 'type',
         span: 5,
         elConfig: { type: 'text' }
+      },
+      {
+        tag: 'select',
+        label: '企业性质',
+        name: 'enterpriseType',
+        span: 5,
+        formrequired: true,
+        elConfig: {
+          multiple: true,
+          options_config: {
+            alias: ['enumValue', 'enumCode'],
+            args: [
+              'engine-bill/combox/queryFsApdEnums',
+              { codeType: 'ENTERPRISE_TYPE' },
+              {
+                res_key_name: 'res.resultValue.0.value'
+              }
+            ]
+          }
+        }
       }
     ])
   })
