@@ -15,7 +15,7 @@ export default {
     format: 'cjs', // 输出格式（CommonJS）
     sourcemap: false, // 不生成 source map
   },
-  external: ['vue', '@vue/runtime-core', '@vue/reactivity', '@vue/shared'], // 外部依赖
+  external: ['vue', '@vue/runtime-core', '@vue/reactivity', '@vue/shared', 'dayjs'], // 外部依赖
   plugins: [
     resolve(),
     commonjs(), // 转换 CommonJS 模块为 ES 模块
