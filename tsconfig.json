@@ -7,7 +7,14 @@
     "strict": true, // 启用严格模式
     "esModuleInterop": true, // 允许与 CommonJS 模块互操作
     "declaration": true, // 自动生成类型声明文件 (.d.ts)
-    "sourceMap": false // 不生成 source map 文件
+    "sourceMap": false, // 不生成 source map 文件
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ]
   },
   "include": [
     "src/**/*"
