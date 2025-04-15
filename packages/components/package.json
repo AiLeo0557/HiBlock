@@ -1,0 +1,35 @@
+{
+  "name": "@hi-block/components",
+  "version": "1.0.0",
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vue-tsc --declaration --noEmit && vite build",
+    "dev": "vite build --watch"
+  },
+  "dependencies": {
+    "@hi-block/definitions": "workspace:^",
+    "@hi-block/http": "workspace:^",
+    "@hi-block/utils": "workspace:^",
+    "axios": "^1.8.3",
+    "hi-calc-pro": "^1.0.1"
+  },
+  "peerDependencies": {
+    "dayjs": "^1.11.13",
+    "element-plus": "^2.9.6",
+    "hi-datatype-operation": "^1.0.5",
+    "sm-core": "^1.0.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/runtime-core": "^3.5.13",
+    "unplugin-element-plus": "^0.9.1",
+    "vite": "^4.5.9",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.8"
+  }
+}

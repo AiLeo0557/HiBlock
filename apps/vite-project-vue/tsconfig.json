@@ -1,0 +1,25 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "types": [
+      "vite/client",
+      "vue/jsx"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@hi-block/components": [
+        "../../packages/components/dist/types/index.d.ts"
+      ],
+    }
+  }
+}

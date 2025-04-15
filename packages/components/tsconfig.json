@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es2018",
+    "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      // "@/*": [
+      //   "./src/*"
+      // ]
+      "@hi-block/components": [
+        "./src/components"
+      ]
+    },
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "rootDir": ".",
+    "preserveSymlinks": true,
+    // "jsx": "preserve",
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "types": [
+      "vite/client",
+      "vue",
+      "element-plus/global"
+    ],
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*",
+    "src/env.d.ts",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
